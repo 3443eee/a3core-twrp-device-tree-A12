@@ -1,20 +1,23 @@
-# from vendor/etc/init/vendor.samsung.hardware.sysinput@1.1-service.rc
 on early-boot
-    # from vendor/etc/init/init.md.rc (edited by sheffdev)
-    # adding more ts lkm (rsuntk)
-    insmod /vendor/lib/nt36xxx_ss.ko
-    insmod /vendor/lib/chipone-tddi_ss.ko
-    insmod /vendor/lib/chipone-tddi.ko
-    insmod /vendor/lib/gcore_ss.ko
-    insmod /vendor/lib/gcore_7202h.ko
-    insmod /vendor/lib/ilitek-tddi.ko
-    insmod /vendor/lib/focaltech_ts.ko
-    insmod /vendor/lib/tcs3430.ko
-    
-    # default
+    # Create mount point
+    mkdir /mnt/socko 0770 root root
+
+    # Mount the socko partition (adjust fs type if needed)
+    mount ext4 /dev/block/by-name/socko /mnt/socko
+
+    # Use exec to run a shell loop that loads all .ko modules
+    exec u:r:init:s0 root root -- /system/bin/sh -c '
+        for module in /mnt/socko/*.ko; do
+            if [ -f "$module" ]; then
+                echo "Loading module: $module"
+                insmod "$module" || echo "Failed to load: $module"
+            fi
+        done
+    '
+
+    # Default permissions
     chown system system /dev/tspio
     chown system system /sys/class/sec/tsp/enable
-
 on init
     # from recovery: init.recovery.samsung.rc
     # unlink /efs > /mnt/vendor/efs

@@ -14,14 +14,10 @@
 # limitations under the License.
 #
 
-# Enable dynamic partitions
+# Dynamic partitions
 PRODUCT_USE_DYNAMIC_PARTITIONS := true
 
-# Prebuilt kernel modules (defined in Android.bp)
-PRODUCT_PACKAGES += \
-    prebuilt_modules_a3core
-
-# fastbootd support
+# fastbootd
 PRODUCT_PACKAGES += \
     android.hardware.fastboot@1.0-impl-mock \
     fastbootd

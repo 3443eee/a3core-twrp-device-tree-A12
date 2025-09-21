@@ -1,3 +1,4 @@
+ 
 #
 # Copyright (C) 2020 The Android Open Source Project
 #
@@ -5,7 +6,7 @@
 # you may not use this file except in compliance with the License.
 # You may obtain a copy of the License at
 #
-#      http://www.apache.org/licenses/LICENSE-2.0
+# http://www.apache.org/licenses/LICENSE-2.0
 #
 # Unless required by applicable law or agreed to in writing, software
 # distributed under the License is distributed on an "AS IS" BASIS,
@@ -20,28 +21,20 @@ PRODUCT_RELEASE_NAME := a3core
 # Inherit from common AOSP config
 $(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base.mk)
 
-# Inherit some common TWRP stuff
+# Inherit some common TWRP stuff.
+# For PitchBlack use vendor/pb/config/common.mk
 $(call inherit-product, vendor/twrp/config/common.mk)
 
 # Inherit device configuration
 $(call inherit-product, device/samsung/a3core/device.mk)
 
-# Charger images
+# Charger
 PRODUCT_PACKAGES += \
     charger_res_images
 
-# Copy everything from recovery/root except kernel modules (*.ko),
-# since .ko prebuilts are now handled in prebuilt/modules/Android.bp
-PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,device/samsung/a3core/recovery/root,recovery/root)
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/a3core/recovery/root,recovery/root)
 
-PRODUCT_COPY_FILES := $(filter-out %vendor/lib/modules/%,$(PRODUCT_COPY_FILES))
-
-# Use the group defined in Android.bp instead of raw .ko entries
-PRODUCT_PACKAGES += \
-    prebuilt_modules_a3core
-
-## Device identifier
+## Device identifier. This must come after all inclusions
 PRODUCT_NAME := twrp_a3core
 PRODUCT_DEVICE := a3core
 PRODUCT_MODEL := Galaxy A03 Core
