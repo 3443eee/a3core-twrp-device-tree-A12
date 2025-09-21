@@ -5,19 +5,13 @@ on early-boot
     # Mount the socko partition (adjust fs type if needed)
     mount ext4 /dev/block/by-name/socko /mnt/socko
 
-    # Use exec to run a shell loop that loads all .ko modules
-    exec u:r:init:s0 root root -- /system/bin/sh -c '
-        for module in /mnt/socko/*.ko; do
-            if [ -f "$module" ]; then
-                echo "Loading module: $module"
-                insmod "$module" || echo "Failed to load: $module"
-            fi
-        done
-    '
+    # Run external shell script to load all modules
+    exec u:r:init:s0 root root -- /sbin/load_modules.sh
 
     # Default permissions
     chown system system /dev/tspio
     chown system system /sys/class/sec/tsp/enable
+
 on init
     # from recovery: init.recovery.samsung.rc
     # unlink /efs > /mnt/vendor/efs
