@@ -3,10 +3,12 @@ Recovery device tree for Samsung Galaxy A03 Core with some modifications.
 ---------------------------------
 
 NOT MINE, ALL CREDITS GO TO: github.com/DrakulaGonchik/android_device_samsung_a3core !!!
+
 Telegram: @sheffdeveloper
+
 A03 CORE TELEGRAM GROUP: @A03Cdevelopment
 
-This just me experimenting to fix the issues the old twrp dt had.
+This just me experimenting to fix the issues the old twrp device tree had.
 
 ---------------------------------
 KNOWN ISSUES
