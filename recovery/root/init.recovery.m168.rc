@@ -1,12 +1,8 @@
 on early-boot
-    # Create mount point
-    mkdir /mnt/socko 0770 root root
-
+    # Create mount point for a socko partition
+    mkdir -p /vendor/lib/modules 0770 root root
     # Mount the socko partition (adjust fs type if needed)
-    mount ext4 /dev/block/by-name/socko /mnt/socko
-
-    # Run external shell script to load all modules
-    exec u:r:init:s0 root root -- /sbin/load_modules.sh
+    mount ext4 /dev/block/by-name/socko /vendor/lib/modules
 
     # Default permissions
     chown system system /dev/tspio
