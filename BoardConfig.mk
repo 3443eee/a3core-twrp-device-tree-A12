@@ -1,5 +1,6 @@
 DEVICE_PATH := device/samsung/a3core
 ALLOW_MISSING_DEPENDENCIES := true
+BUILD_BROKEN_DISABLE_HOST_TESTS := true
 
 # Bootloader
 BOARD_VENDOR := samsung
@@ -155,3 +156,4 @@ TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 
 # Making the recovery.img smaller
 BOARD_HAS_NO_REAL_SDCARD := true
+
