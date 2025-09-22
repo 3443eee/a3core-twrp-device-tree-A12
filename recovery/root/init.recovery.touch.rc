@@ -1,10 +1,17 @@
-service touch_a3core /system/bin/sh /sbin/touch_a3core.sh 
-	class core
-	user root
-	group root
-	oneshot
 on post-fs-data
-	chmod 0755 /sbin/touch_a3core.sh 
-	chown root root /sbin/touch_a3core.sh 
-	# Making a service to execute an .sh file, which will do all the things needed for touch. 
-	start touch_a3core
+    # Mount socko
+    mkdir /mnt/socko 0755 root root
+    mount ext4 /dev/block/by-name/socko /mnt/socko ro
+
+    # Ensure vendor modules dir
+    mkdir /vendor/lib/modules 0755 root root
+
+    # Copy everything from socko -> vendor/lib/modules
+    exec -- /system/bin/toybox cp -r /mnt/socko/* /vendor/lib/modules/
+
+    # Fix permissions
+    exec -- /system/bin/chmod 0644 /vendor/lib/modules/*
+    exec -- /system/bin/chown root:root /vendor/lib/modules/*
+
+    # Restore SELinux contexts
+    restorecon_recursive /vendor/lib/modules
