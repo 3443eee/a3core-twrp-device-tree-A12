@@ -1,10 +1,10 @@
-on fs
+service touch_a3core /system/bin/sh /sbin/touch_a3core.sh 
+	class core
+	user root
+	group root
+	oneshot
+on post-fs-data
 	chmod 0755 /sbin/touch_a3core.sh 
 	chown root root /sbin/touch_a3core.sh 
 	# Making a service to execute an .sh file, which will do all the things needed for touch. 
-	service touch_a3core /system/bin/sh /sbin/touch_a3core.sh 
-		class core
-		user root 
-		group root 
-		oneshot 
 	start touch_a3core
