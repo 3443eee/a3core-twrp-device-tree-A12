@@ -11,15 +11,15 @@ TARGET_USES_UEFI := true
 
 # Architecture (a64 / arm32_binder64)
 TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv8-a
+TARGET_ARCH_VARIANT := armv8-2a   # must be -2a, not -a
 TARGET_CPU_ABI := armeabi-v7a
 TARGET_CPU_ABI2 := armeabi
 TARGET_CPU_VARIANT := cortex-a55
 TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 
-# Second arch is 64-bit, but only for binder
+# Second arch is 64-bit
 TARGET_2ND_ARCH := arm64
-TARGET_2ND_ARCH_VARIANT := armv8-a
+TARGET_2ND_ARCH_VARIANT := armv8-2a
 TARGET_2ND_CPU_ABI := arm64-v8a
 TARGET_2ND_CPU_ABI2 :=
 TARGET_2ND_CPU_VARIANT := cortex-a55
