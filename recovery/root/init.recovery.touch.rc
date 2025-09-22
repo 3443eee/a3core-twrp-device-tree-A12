@@ -1,17 +1,17 @@
-on post-fs-data
-    # Mount socko
+on post-fs
+    # Mount socko partition
     mkdir /mnt/socko 0755 root root
     mount ext4 /dev/block/by-name/socko /mnt/socko ro
 
     # Ensure vendor modules dir
     mkdir /vendor/lib/modules 0755 root root
 
-    # Copy everything from socko -> vendor/lib/modules
+    # Copy all .ko files from socko into vendor/lib/modules
     exec -- /system/bin/toybox cp -r /mnt/socko/* /vendor/lib/modules/
 
-    # Fix permissions
-    exec -- /system/bin/chmod 0644 /vendor/lib/modules/*
+    # Set proper ownership and perms
     exec -- /system/bin/chown root:root /vendor/lib/modules/*
+    exec -- /system/bin/chmod 0644 /vendor/lib/modules/*
 
     # Restore SELinux contexts
     restorecon_recursive /vendor/lib/modules
