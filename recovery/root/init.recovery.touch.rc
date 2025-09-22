@@ -1,7 +1,10 @@
-on post-fs-data
-	# Mounting of the "socko" partition
-	mount ext4 /dev/block/platform/soc/soc:ap-ahb/20600000.sdio/by-name/socko /socko rw wait
-	# mkdir of modules folder to ensure it exists
-	mkdir /vendor/lib/modules/$(uname -r) 0755 root root
-	# Copying of all the socko .ko modules to modules folder using an .sh script, because without it it might have problems.
-	exec u:r:init:s0 root root -- /sbin/copy_modules.sh
+on fs
+	chmod 0755 /sbin/touch_a3core.sh 
+	chown root root /sbin/touch_a3core.sh 
+	# Making a service to execute an .sh file, which will do all the things needed for touch. 
+	service touch_a3core /system/bin/sh /sbin/touch_a3core.sh 
+		class core
+		user root 
+		group root 
+		oneshot 
+	start touch_a3core
