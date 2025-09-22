@@ -1,5 +1,4 @@
 on early-boot
-
     insmod /vendor/lib/modules/nt36xxx.ko
     insmod /vendor/lib/modules/nt36xxx_ss.ko
     insmod /vendor/lib/modules/chipone-tddi.ko
@@ -9,24 +8,6 @@ on early-boot
     insmod /vendor/lib/modules/gcore_7202h.ko
     insmod /vendor/lib/modules/ilitek-tddi.ko
     insmod /vendor/lib/modules/focaltech_ts.ko
-    insmod /vendor/lib/modules/tcs3430.ko
-
-
-    insmod /vendor/lib/modules/ant_check_div.ko
-    insmod /vendor/lib/modules/microarray_fp.ko
-    insmod /vendor/lib/modules/sunwave_sw9058g_fp.ko
-    insmod /vendor/lib/modules/flash_ic_aw3641.ko
-    insmod /vendor/lib/modules/flash_ic_ocp8137.ko
-    insmod /vendor/lib/modules/flash_ic_sc2703.ko
-    insmod /vendor/lib/modules/flash_ic_syx378duc.ko
-    insmod /vendor/lib/modules/pvrsrvkm.ko
-    insmod /vendor/lib/modules/sprdbt_tty.ko
-    insmod /vendor/lib/modules/sprd_camera.ko
-    insmod /vendor/lib/modules/sprd_cpp.ko
-    insmod /vendor/lib/modules/sprd_flash_drv.ko
-    insmod /vendor/lib/modules/sprd_fm.ko
-    insmod /vendor/lib/modules/sprd_sensor.ko
-    insmod /vendor/lib/modules/sprdwl_ng.ko
 
     # Default permissions
     chown system system /dev/tspio
