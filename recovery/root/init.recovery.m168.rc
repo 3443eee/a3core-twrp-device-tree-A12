@@ -1,9 +1,4 @@
 on early-boot
-    # Create mount point for a socko partition
-    mkdir -p /vendor/lib/modules 0770
-    # Mount the socko partition (adjust fs type if needed)
-    mount ext4 /dev/block/by-name/socko /vendor/lib/modules
-
     # Default permissions
     chown system system /dev/tspio
     chown system system /sys/class/sec/tsp/enable
