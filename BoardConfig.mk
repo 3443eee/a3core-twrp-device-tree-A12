@@ -1,6 +1,5 @@
 DEVICE_PATH := device/samsung/a3core
 ALLOW_MISSING_DEPENDENCIES := true
-BUILD_BROKEN_DISABLE_HOST_TESTS := true
 
 # Bootloader
 BOARD_VENDOR := samsung
@@ -10,23 +9,22 @@ TARGET_NO_BOOTLOADER := true
 TARGET_NO_RADIOIMAGE := true
 TARGET_USES_UEFI := true
 
-# Architecture (a64 / arm32_binder64)
-TARGET_ARCH := arm
-TARGET_ARCH_VARIANT := armv8-2a   # must be -2a, not -a
-TARGET_CPU_ABI := armeabi-v7a
-TARGET_CPU_ABI2 := armeabi
+# Architecture
+TARGET_ARCH := arm64
+TARGET_ARCH_VARIANT := armv8-2a
+TARGET_ARCH_VARIANT := armv8-a
+TARGET_CPU_ABI := arm64-v8a
+TARGET_CPU_ABI2 :=
 TARGET_CPU_VARIANT := cortex-a55
 TARGET_CPU_VARIANT_RUNTIME := cortex-a55
 
-# Second arch is 64-bit
-TARGET_2ND_ARCH := arm64
+TARGET_2ND_ARCH := arm
 TARGET_2ND_ARCH_VARIANT := armv8-2a
-TARGET_2ND_CPU_ABI := arm64-v8a
-TARGET_2ND_CPU_ABI2 :=
+TARGET_2ND_CPU_ABI := armeabi-v7a
+TARGET_2ND_CPU_ABI2 := armeabi
 TARGET_2ND_CPU_VARIANT := cortex-a55
 TARGET_2ND_CPU_VARIANT_RUNTIME := cortex-a55
 
-# Binder interface is 32-bit
 TARGET_USES_64_BIT_BINDER := true
 
 TARGET_CPU_SMP := true
@@ -142,15 +140,18 @@ TWRP_INCLUDE_LOGCAT := true
 TW_USE_NEW_MINADBD := true
 TW_EXCLUDE_TWRPAPP := true
 TW_EXCLUDE_DEFAULT_USB_INIT := true
+
 #TW_EXTRA_LANGUAGES := true
 TARGET_USES_MKE2FS := true
 TW_NO_LEGACY_PROPS := true
 TW_NO_BIND_SYSTEM := true
 TW_USE_MODEL_HARDWARE_ID_FOR_DEVICE_ID := true
 TW_MTP_DEVICE := "Galaxy A03 Core"
+
 # Kernel module loading for touch, battery etc
-#TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/prebuilt/modules)\")
+TW_LOAD_VENDOR_MODULES := $(shell echo \"$(shell ls $(DEVICE_PATH)/prebuilt/modules)\")
 TW_LOAD_VENDOR_MODULES := "ant_check_div.ko gcore_7202h.ko sprd_cpp.ko chipone-tddi.ko gcore_ss.ko sprd_flash_drv.ko chipone-tddi_ss.ko ilitek-tddi.ko sprd_fm.ko flash_ic_aw3641.ko microarray_fp.ko sprd_sensor.ko flash_ic_ocp8137.ko nt36xxx_ss.ko sprdwl_ng.ko flash_ic_sc2703.ko pvrsrvkm.ko sunwave_sw9058g_fp.ko flash_ic_syx378duc.ko sprdbt_tty.ko tcs3430.ko focaltech_ts.ko sprd_camera.ko gcore.ko nt36xxx.ko"
+PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/a3core/recovery/root,recovery/root)
 TW_LOAD_VENDOR_BOOT_MODULES := true
 TW_LOAD_VENDOR_MODULES_EXCLUDE_GKI := true
 

@@ -32,8 +32,6 @@ $(call inherit-product, device/samsung/a3core/device.mk)
 PRODUCT_PACKAGES += \
     charger_res_images
 
-PRODUCT_COPY_FILES += $(call find-copy-subdir-files,*,device/samsung/a3core/recovery/root,recovery/root)
-
 ## Device identifier. This must come after all inclusions
 PRODUCT_NAME := twrp_a3core
 PRODUCT_DEVICE := a3core

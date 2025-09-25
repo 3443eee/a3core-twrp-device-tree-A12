@@ -1,4 +1,5 @@
 on early-boot
+<<<<<<< HEAD
     insmod /vendor/lib/modules/nt36xxx_ss.ko
     insmod /vendor/lib/modules/chipone-tddi.ko
     insmod /vendor/lib/modules/chipone-tddi_ss.ko
@@ -7,6 +8,8 @@ on early-boot
     insmod /vendor/lib/modules/ilitek-tddi.ko
     insmod /vendor/lib/modules/focaltech_ts.ko
 
+=======
+>>>>>>> parent of 290572f (added manual insmodding)
     # Default permissions
     chown system system /dev/tspio
     chown system system /sys/class/sec/tsp/enable
