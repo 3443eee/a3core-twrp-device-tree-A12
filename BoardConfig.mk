@@ -116,18 +116,6 @@ TW_INCLUDE_CRYPTO_FBE := true
 TW_INCLUDE_FBE_METADATA_DECRYPT := true
 BOARD_USES_METADATA_PARTITION := true
 
-PRODUCT_COPY_FILES += \
-    $(DEVICE_PATH)/recovery/root/vendor/bin/vold:vendor/bin/vold \
-    $(DEVICE_PATH)/recovery/root/vendor/bin/wait_for_keymaster:vendor/bin/wait_for_keymaster \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libkeymaster4.so:vendor/lib/libkeymaster4.so \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libkeymaster4support.so:vendor/lib/libkeymaster4support.so \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libkeymaster4_1support.so:vendor/lib/libkeymaster4_1support.so \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libkeymaster41.so:vendor/lib/libkeymaster41.so \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libkeymaster_messages.so:vendor/lib/libkeymaster_messages.so \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libtrusty.so:vendor/lib/libtrusty.so \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libtrustyHalHelper.so:vendor/lib/libtrustyHalHelper.so \
-    $(DEVICE_PATH)/recovery/root/vendor/lib/libnvitem_crypto.so:vendor/lib/libnvitem_crypto.so
-
 # TWRP
 TW_DEVICE_VERSION := 1_SHEFFDEVELOPER_AND_3443
 TW_THEME := portrait_hdpi
